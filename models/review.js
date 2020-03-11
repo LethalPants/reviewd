@@ -3,16 +3,36 @@ const Schema = mongoose.Schema;
 
 const ReviewSchema = new Schema(
   {
-    title: {
+    name: {
       type: String,
-      required: [true, "can't be empty"]
+      required: [true, "Name can't be empty"]
     },
     body: {
       type: String,
-      required: [true, "can't be empty"]
+      required: [true, "Body can't be empty"]
+    },
+    genre: {
+      type: String,
+      required: [true, "Genre can't be empty"]
+    },
+    releaseAt: {
+      type: String,
+      required: [true, "Release date can't be empty"]
+    },
+    publisher: {
+      type: String,
+      required: [true, "Publisher can't be empty"]
+    },
+    image: {
+      type: String
+    },
+    rating: {
+      type: Number,
+      default: 1
     },
     edited: {
-      type: Boolean
+      type: Boolean,
+      default: 0
     },
     author: {
       id: {
@@ -20,12 +40,6 @@ const ReviewSchema = new Schema(
         ref: 'User'
       },
       username: String
-    },
-    game: {
-      id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'game'
-      }
     },
     comments: [
       {
