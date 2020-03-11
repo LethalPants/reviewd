@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Review = require('../models/review');
+const editorAuth = require('../middleware/editorAuth');
 
 router.get('/', async (req, res) => {
   try {
@@ -12,9 +13,13 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', editorAuth, async (req, res) => {
   const review = new Review({
-    ...req.body
+    ...req.body,
+    author: {
+      id: req.user._id,
+      username: req.user.username
+    }
   });
   try {
     await review.save();

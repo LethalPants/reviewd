@@ -27,8 +27,8 @@ const UserSchema = new Schema(
     },
     type: {
       type: String,
-      default: 'User',
-      match: [/User|Admin|Editor/, 'Type is invalid']
+      default: 'user',
+      match: [/user|admin|editor/, 'Type is invalid']
     },
     tokens: [
       {
