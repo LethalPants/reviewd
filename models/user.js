@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const Comments = require('./comment');
 const UserSchema = new Schema(
   {
     username: {
@@ -102,4 +103,9 @@ UserSchema.pre('save', async function(next) {
   next();
 });
 
+UserSchema.pre('remove', async function(next) {
+  const user = this;
+  await Comments.deleteMany({ owner: user._id });
+  next();
+});
 module.exports = mongoose.model('Users', UserSchema);
