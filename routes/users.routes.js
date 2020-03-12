@@ -35,10 +35,8 @@ function checkFileType(file, cb) {
   }
 }
 
-router.post('/register', upload.single('avatar'), async (req, res) => {
-  const profile = req.file
-    ? `${req.body.username}${path.extname(req.file.originalname)}`
-    : 'profile_img.jpg';
+router.post('/register', async (req, res) => {
+  const profile = 'profile_img.jpg';
   const user = new User({
     ...req.body,
     profile
@@ -48,7 +46,8 @@ router.post('/register', upload.single('avatar'), async (req, res) => {
     const token = await user.generateAuthToken();
     res.status(201).send({ sucess: 'true', user, token });
   } catch (err) {
-    console.log(err);
+    err.errmsg = `${Object.keys(err.keyPattern)[0]} taken`;
+    console.log(err.errmsg);
     res.status(400).send({ sucess: 'false', err });
   }
 });

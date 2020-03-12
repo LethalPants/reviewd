@@ -1,0 +1,33 @@
+.container {
+  width: 80%;
+  margin: auto;
+}
+
+.form-container {
+  display: grid;
+  box-sizing: border-box;
+  margin: auto;
+}
+
+.align-left {
+  font-size: 1.5em;
+  text-align: left;
+}
+
+.grid {
+  width: 100%;
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+
+.grid-item {
+  height: 70px;
+  width: 100%;
+}
+
+.error-text {
+  color: #bd1e1e;
+  font-size: 14px;
+  font-weight: normal;
+}

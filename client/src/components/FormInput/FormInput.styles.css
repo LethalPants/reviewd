@@ -1,0 +1,44 @@
+.input {
+  position: relative;
+  width: 100%;
+}
+
+.input input {
+  border-radius: 0;
+  border: 1px solid gray;
+  height: 48px;
+  width: calc(100% - 22px);
+  font-size: 1em;
+  padding: 10px;
+}
+
+.input p {
+  position: absolute;
+  top: 1.4em;
+  font-size: 1em;
+  left: 10px;
+  margin: 0;
+  pointer-events: none;
+  color: rgb(190, 190, 190);
+  transition-duration: 300ms;
+}
+
+.input input:focus {
+  border: 1px solid #3c3c3d;
+  outline: none;
+}
+
+.input input:focus + p {
+  color: rgb(167, 167, 167);
+  font-weight: bold;
+  top: 6px;
+  font-size: 12px;
+  transition-duration: 300ms;
+}
+
+.input input:not(:focus):valid + p {
+  color: rgb(190, 190, 190);
+  font-weight: bold;
+  top: 6px;
+  font-size: 12px;
+}

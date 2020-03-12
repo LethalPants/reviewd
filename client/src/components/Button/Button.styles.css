@@ -1,0 +1,21 @@
+.red-submit {
+  border-radius: 3px;
+  width: 100%;
+  height: 50px;
+  background-color: #e50914;
+  border: none;
+  color: white;
+  text-transform: capitalize;
+  font-size: 1.25em;
+  cursor: pointer;
+  letter-spacing: 0.1em;
+  transition-duration: 300ms;
+}
+
+.red-submit:hover {
+  background-color: #f01721;
+}
+
+button {
+  outline: none;
+}
