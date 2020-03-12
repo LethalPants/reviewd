@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-
+import { withRouter } from 'react-router-dom';
 import './signup.styles.css';
 import FormInput from '../../components/FormInput/FormInput.component';
 import Button from '../../components/Button/Button.component';
 import { signUpSuccess } from '../../redux/user/user.actions';
 
-const SignUp = ({ signUpSuccess }) => {
+const SignUp = ({ signUpSuccess, history }) => {
   const [user, setUser] = useState({
     username: '',
     email: '',
@@ -28,6 +28,7 @@ const SignUp = ({ signUpSuccess }) => {
   };
 
   const handleChange = event => {
+    setError('');
     const { name, value } = event.target;
     setUser({ ...user, [name]: value });
     if (name === 'email') {
@@ -61,13 +62,16 @@ const SignUp = ({ signUpSuccess }) => {
           password
         })
         .then(response => {
-          if (response.status === 201) {
-            localStorage.setItem('token', response.data.token);
-            signUpSuccess(response.data.user);
-          }
+          console.log('Response', response);
+          localStorage.setItem('token', response.data.token);
+          signUpSuccess(response.data.user);
+          history.push('/');
         })
         .catch(err => {
-          setError(err.response.data.err.errmsg);
+          if (err.response.status === 400) {
+            console.log(err.response.data.errmsg);
+            setError(err.response.data.err.errmsg);
+          }
         });
     }
   };
@@ -129,7 +133,7 @@ const SignUp = ({ signUpSuccess }) => {
 
             <div className='grid-item'>
               <Button type='submit' className='red-submit'>
-                Submit
+                Register
               </Button>
             </div>
           </div>
@@ -140,7 +144,7 @@ const SignUp = ({ signUpSuccess }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  signUpSucess: user => dispatch(signUpSuccess(user))
+  signUpSuccess: user => dispatch(signUpSuccess(user))
 });
 
-export default connect(mapDispatchToProps, null)(SignUp);
+export default connect(null, mapDispatchToProps)(withRouter(SignUp));

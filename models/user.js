@@ -63,36 +63,6 @@ UserSchema.methods.generateAuthToken = async function() {
   return token;
 };
 
-UserSchema.statics.findByCredentials = async (email, password) => {
-  const user = await this.findOne({ email });
-
-  if (!user) {
-    throw new Error('Unable to login');
-  }
-
-  const isMatch = await bcrypt.compare(password, user.password);
-
-  if (!isMatch) {
-    throw new Error('Unable to login');
-  }
-
-  return user;
-};
-
-UserSchema.statics.uniqueUser = async (email, username) => {
-  await this.findOne({ email }, (err, User) => {
-    if (!err || User) {
-      throw new Error('User already exists');
-    }
-  });
-  await this.findOne({ username }, (err, User) => {
-    if (!err || User) {
-      throw new Error('User already exists');
-    }
-  });
-  return true;
-};
-
 UserSchema.pre('save', async function(next) {
   const user = this;
 

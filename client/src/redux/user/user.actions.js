@@ -9,7 +9,9 @@ export const signOutSuccess = () => ({
   type: UserActionTypes.SIGN_OUT_SUCCESS
 });
 
-export const signUpSuccess = ({ user, additionalData }) => ({
-  type: UserActionTypes.SIGN_UP_SUCCESS,
-  payload: { user, additionalData }
-});
+export const signUpSuccess = user => {
+  return {
+    type: UserActionTypes.SIGN_UP_SUCCESS,
+    payload: user
+  };
+};

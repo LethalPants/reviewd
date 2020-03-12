@@ -4,6 +4,7 @@ const auth = require('../middleware/auth');
 const multer = require('multer');
 const router = express.Router();
 const path = require('path');
+const bcrypt = require('bcrypt');
 
 const storage = multer.diskStorage({
   destination: './public/uploads/users',
@@ -44,24 +45,36 @@ router.post('/register', async (req, res) => {
   try {
     await user.save();
     const token = await user.generateAuthToken();
-    res.status(201).send({ sucess: 'true', user, token });
+    res.status(201).send({ user, token });
   } catch (err) {
     err.errmsg = `${Object.keys(err.keyPattern)[0]} taken`;
-    console.log(err.errmsg);
-    res.status(400).send({ sucess: 'false', err });
+    console.log(err);
+    res.status(400).send({ err });
   }
 });
 
 router.post('/login', async (req, res) => {
   try {
-    const user = await User.findByCredentials(
-      req.body.email,
-      req.body.password
-    );
+    let re = /\S+@\S+\.\S+/;
+    const { username, password } = req.body;
+    const user = re.test(username)
+      ? await User.findOne({ email: username })
+      : await User.findOne({ username });
+
+    if (!user) {
+      throw new Error('Unable to login');
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      console.log(user, 'unable to login');
+      throw new Error('Unable to login');
+    }
     const token = await user.generateAuthToken();
     res.send({ user, token });
   } catch (e) {
-    res.status(400).send();
+    res.status(400).send({ e });
   }
 });
 
