@@ -30,20 +30,17 @@ const SignIn = ({ signInSuccess, history }) => {
         password
       })
       .then(response => {
-        console.log(response);
         localStorage.setItem('token', response.data.token);
-        signInSuccess(response.data.user);
         setUser({
           username: '',
           password: ''
         });
         setError('');
+        signInSuccess(response.data.user);
         history.push('/');
       })
       .catch(err => {
-        if (err.status === 400) {
-          setError('Incorrect Username or password');
-        }
+        setError('Incorrect Username or password');
       });
   };
   return (

@@ -1,0 +1,4 @@
+.clip-text {
+  height: 20px;
+  text-overflow: ellipsis;
+}

@@ -37,16 +37,19 @@ function checkFileType(file, cb) {
 
 router.get('/', async (req, res) => {
   try {
-    const rev = await Review.find({});
+    const rev = await Review.find({}, [], { sort: { rating: -1 } });
     res.status(200).json(rev);
   } catch (e) {
-    console.err(e);
+    console.log(e);
+
     res.status(500).send(e);
   }
 });
 
-router.post('/', editorAuth, upload.single('gameImage'), async (req, res) => {
-  const image = `${req.body.name}${path.extname(req.file.originalname)}`;
+router.post('/', editorAuth, async (req, res) => {
+  const image = `${req.body.name}`;
+
+  console.log(req.body);
 
   const review = new Review({
     ...req.body,

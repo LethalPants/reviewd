@@ -10,6 +10,7 @@
   width: calc(100% - 22px);
   font-size: 1em;
   padding: 10px;
+  font-family: 'Sen', sans-serif;
 }
 
 .input p {
