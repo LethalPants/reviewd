@@ -38,7 +38,10 @@ function checkFileType(file, cb) {
 router.get('/', async (req, res) => {
   try {
     const rev = await Review.find({}, [], { sort: { rating: -1 } });
-    res.status(200).json(rev);
+    res.json(rev);
+    const stat = res.statusCode;
+    console.log(stat);
+    res.end(stat);
   } catch (e) {
     console.log(e);
 

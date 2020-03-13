@@ -9,7 +9,8 @@ const ReviewSchema = new Schema(
     },
     body: {
       type: String,
-      required: [true, "Body can't be empty"]
+      required: [true, "Body can't be empty"],
+      select: false
     },
     genre: {
       type: String,

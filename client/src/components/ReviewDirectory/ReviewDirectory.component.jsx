@@ -1,26 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import ReviewCard from '../ReviewCard/ReviewCard.component';
+import CardGrid from '../CardGrid/CardGrid.component';
+import HeroReview from '../HeroReview/HeroReview.component';
 import {
   selectHighRatedGame,
   selectReviewsFromOne
 } from '../../redux/reviews/review.selectors';
 import { loadReviews } from '../../redux/reviews/review.actions';
+import './ReviewDirectory.styles.css';
 
 class ReviewDirectory extends React.Component {
   componentDidMount() {
     this.props.loadReviews();
   }
   render() {
-    const { reviews } = this.props;
+    const { highRatedGame, reviews } = this.props;
     return (
-      <div>
-        {reviews
-          ? reviews.map((review, index) => (
-              <ReviewCard review={review} index={index} key={index} />
-            ))
-          : null}
+      <div className='main-grid'>
+        <HeroReview review={highRatedGame} />
+        <CardGrid reviews={reviews} />
       </div>
     );
   }

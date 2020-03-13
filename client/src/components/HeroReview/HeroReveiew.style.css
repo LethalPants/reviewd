@@ -1,0 +1,50 @@
+.hero-bg-dark {
+  background-color: #202020;
+  color: #fff;
+  height: 40vw;
+  display: grid;
+  align-items: center;
+  justify-content: normal;
+}
+
+.hero-container {
+  width: 80%;
+  margin: auto;
+}
+
+.hero-container .hero-featured {
+  color: #cccccc7a;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 1rem;
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.hero-container .hero-game-title {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 0.4rem;
+}
+
+.hero-container .hero-hr {
+  height: 0;
+  width: 15%;
+  border: 1px solid #cccccc7a;
+  margin: 25px 0;
+}
+
+.hero-section-subtext {
+  display: grid;
+  gap: 1rem;
+}
+
+.hero-genre-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.tag {
+  color: #cccccc7a;
+  margin-right: 5px;
+}

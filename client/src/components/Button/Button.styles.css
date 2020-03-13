@@ -1,3 +1,18 @@
+.submit-button {
+  font-size: 1em;
+  font-weight: 600;
+  border-radius: 5px;
+  background-color: rgb(240, 33, 33);
+  text-decoration: none;
+  color: #fff;
+  border: none;
+  text-transform: capitalize;
+  width: auto;
+  padding: 0 2%;
+  height: 3em;
+  cursor: pointer;
+}
+
 .red-submit {
   border-radius: 3px;
   width: 100%;

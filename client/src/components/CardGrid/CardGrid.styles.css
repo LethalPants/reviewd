@@ -1,0 +1,15 @@
+.card-container {
+  width: 80%;
+  margin: auto;
+}
+.card-title {
+  font-weight: 600;
+  font-size: 1.3em;
+  color: rgb(229, 229, 229);
+  letter-spacing: 0.1em;
+}
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) auto;
+  column-gap: 1em;
+}

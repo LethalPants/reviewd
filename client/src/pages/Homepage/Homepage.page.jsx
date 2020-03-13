@@ -29,12 +29,18 @@ const HomePage = ({ user, logout }) => {
 
   return (
     <>
-      {user ? <h1>Welcome, {user.username}</h1> : null}
-
       {user ? (
-        <h2 onClick={handleLogout} className='Link'>
-          Logout
-        </h2>
+        <>
+          <span style={{ fontSize: 18 }}>Welcome, {user.username}</span>
+          <span onClick={handleLogout} className='Link'>
+            Logout
+          </span>
+          {user && user.type === 'editor' ? (
+            <Link to='/review/new' className='Link'>
+              Post Review
+            </Link>
+          ) : null}
+        </>
       ) : (
         <>
           <Link to='/signup' className='Link'>
@@ -45,12 +51,6 @@ const HomePage = ({ user, logout }) => {
           </Link>
         </>
       )}
-
-      {user && user.type === 'editor' ? (
-        <Link to='/review/new' className='Link'>
-          Post Review
-        </Link>
-      ) : null}
 
       <ReviewDirectory />
     </>

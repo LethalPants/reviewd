@@ -4,10 +4,7 @@ import axios from 'axios';
 export const loadReviews = () => {
   return dispatch => {
     return axios.get('/api/reviews').then(res => {
-      console.log(res);
-      if (res.status === 200) {
-        dispatch(updateReviews(res.data));
-      }
+      if (res.status === 200) dispatch(updateReviews(res.data));
     });
   };
 };
