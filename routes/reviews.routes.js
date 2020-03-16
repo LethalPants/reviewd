@@ -2,19 +2,12 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
+const sharp = require('sharp');
 const Review = require('../models/review');
 const editorAuth = require('../middleware/editorAuth');
 
-const storage = multer.diskStorage({
-  destination: './public/uploads/reviews',
-  filename: function(req, file, cb) {
-    cb(null, `${req.body.name}${path.extname(file.originalname)}`);
-  }
-});
-
 const upload = multer({
-  storage: storage,
-  limits: { fileSize: 1000000 },
+  limits: { fileSize: 5000000 },
   fileFilter: function(req, file, cb) {
     checkFileType(file, cb);
   }
@@ -39,24 +32,26 @@ router.get('/', async (req, res) => {
   try {
     const rev = await Review.find({}, [], { sort: { rating: -1 } });
     res.json(rev);
-    const stat = res.statusCode;
-    console.log(stat);
-    res.end(stat);
   } catch (e) {
-    console.log(e);
-
     res.status(500).send(e);
   }
 });
 
+router.get('/image', async (req, res) => {
+  res.sendFile(
+    path.resolve(
+      path.dirname(require.main.filename || process.mainModule.filename),
+      'public',
+      'uploads',
+      'users',
+      req.query.name
+    )
+  );
+});
+
 router.post('/', editorAuth, async (req, res) => {
-  const image = `${req.body.name}`;
-
-  console.log(req.body);
-
   const review = new Review({
     ...req.body,
-    image,
     author: {
       id: req.user._id,
       username: req.user.username
@@ -110,14 +105,28 @@ router.delete('/:id', editorAuth, async (req, res) => {
   }
 });
 
-router.get('/images', (req, res) => {
-  res.sendFile(
-    path.dirname(require.main.filename || process.mainModule.filename),
-    'public',
-    'uploads',
-    'reviews',
-    req.query.game
-  );
-});
+// router.get('/image' async (req,res)=> {
+
+// })
+
+router.post(
+  '/image',
+  editorAuth,
+  upload.single('gameImage'),
+  async (req, res) => {
+    try {
+      console.log(req.query);
+      console.log(req.file);
+      const review = await Review.findById(req.query._id);
+      const buffer = await sharp(req.file.buffer).toBuffer();
+      review.image = buffer;
+      await review.save();
+      res.status(204).send(review);
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(err);
+    }
+  }
+);
 
 module.exports = router;

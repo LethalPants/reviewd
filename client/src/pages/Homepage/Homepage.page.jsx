@@ -12,6 +12,8 @@ import { signOutSuccess } from '../../redux/user/user.actions';
 import axios from 'axios';
 
 const HomePage = ({ user, logout }) => {
+  document.body.style = 'background: #14141; color : #fff';
+
   const handleLogout = () => {
     axios({
       method: 'POST',

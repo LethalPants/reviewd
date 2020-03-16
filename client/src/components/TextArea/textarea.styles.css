@@ -1,4 +1,5 @@
 .text-area-input {
+  background-color: #fff;
   position: relative;
   width: calc(100% - 22px);
   border: 1px solid gray;

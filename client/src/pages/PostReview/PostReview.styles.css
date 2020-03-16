@@ -51,3 +51,12 @@
   font-weight: normal;
   text-transform: capitalize;
 }
+
+.hidden {
+  display: none;
+}
+
+.material-icons {
+  color: rgb(240, 33, 33);
+  cursor: pointer;
+}

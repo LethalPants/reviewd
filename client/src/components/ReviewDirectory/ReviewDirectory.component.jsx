@@ -5,7 +5,7 @@ import CardGrid from '../CardGrid/CardGrid.component';
 import HeroReview from '../HeroReview/HeroReview.component';
 import {
   selectHighRatedGame,
-  selectReviewsFromOne
+  selectTenReview
 } from '../../redux/reviews/review.selectors';
 import { loadReviews } from '../../redux/reviews/review.actions';
 import './ReviewDirectory.styles.css';
@@ -27,7 +27,7 @@ class ReviewDirectory extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   highRatedGame: selectHighRatedGame,
-  reviews: selectReviewsFromOne
+  reviews: selectTenReview
 });
 const mapDispatchToProps = dispatch => ({
   loadReviews: () => dispatch(loadReviews())

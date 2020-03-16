@@ -25,7 +25,7 @@ const ReviewSchema = new Schema(
       required: [true, "Publisher can't be empty"]
     },
     image: {
-      type: String
+      type: Buffer
     },
     rating: {
       type: Number,

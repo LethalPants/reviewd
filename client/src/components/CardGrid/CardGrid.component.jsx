@@ -3,7 +3,6 @@ import ReviewCard from '../ReviewCard/ReviewCard.component';
 import './CardGrid.styles.css';
 
 const CardGrid = ({ reviews }) => {
-  console.log(reviews);
   return (
     <div className='card-container'>
       <span className='card-title'>Recently Reviewed</span>

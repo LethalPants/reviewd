@@ -9,6 +9,7 @@ import Button from '../../components/Button/Button.component';
 import TextArea from '../../components/TextArea/TextArea.component';
 
 const SignIn = ({ history }) => {
+  document.body.style = 'background: #fff; color : #333';
   const [review, setReview] = useState({
     name: '',
     body: '',
@@ -17,11 +18,16 @@ const SignIn = ({ history }) => {
     publisher: '',
     rating: ''
   });
+  var formdata = new FormData();
   const [error, setError] = useState(false);
   const handleChange = event => {
     setError('');
     const { name, value } = event.target;
     setReview({ ...review, [name]: value });
+  };
+
+  const handleUpload = event => {
+    formdata.append('gameImage', event.target.files[0]);
   };
 
   const handleSubmit = event => {
@@ -44,18 +50,31 @@ const SignIn = ({ history }) => {
         }
       )
       .then(res => {
-        setReview({
-          name: '',
-          body: '',
-          genre: '',
-          releaseAt: '',
-          publisher: '',
-          rating: ''
-        });
-        history.push('/');
+        axios
+          .post(
+            `http://localhost:80/api/reviews/image/?_id=${res.data.review._id}`,
+            formdata,
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+              }
+            }
+          )
+          .then(result => {
+            setReview({
+              name: '',
+              body: '',
+              genre: '',
+              releaseAt: '',
+              publisher: '',
+              rating: ''
+            });
+            history.push('/');
+          })
+          .catch(error => console.log('error', error));
       })
       .catch(err => {
-        console.log(err.response);
+        console.log(err);
         setError(true);
       });
   };
@@ -134,6 +153,19 @@ const SignIn = ({ history }) => {
               >
                 {review.body}
               </TextArea>
+            </div>
+
+            <div className='post-rev-grid-item'>
+              <input
+                type='file'
+                name='gameReview'
+                id='gameReview'
+                className='hidden'
+                onChange={handleUpload}
+              />
+              <label htmlFor='gameReview'>
+                <i className='material-icons'>camera_alt</i>
+              </label>
             </div>
 
             <div className='post-rev-grid-item'>
