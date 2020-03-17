@@ -1,9 +1,9 @@
-.container {
-  width: 80%;
-  margin: auto;
+.reg-grid {
+  display: grid;
+  gap: 20px;
 }
-
 .form-container {
+  width: 80%;
   display: grid;
   box-sizing: border-box;
   margin: auto;

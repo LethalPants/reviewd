@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
-import './signin.styles.css';
+
+import WhiteHeader from '../../components/HeaderWhite/HeaderWhite.component';
+import Container from '../../components/Container/Container.component';
+import './Login.styles.css';
 import FormInput from '../../components/FormInput/FormInput.component';
 import Button from '../../components/Button/Button.component';
 import { signInSuccess } from '../../redux/user/user.actions';
 
 const SignIn = ({ signInSuccess, history }) => {
+  document.body.style = 'background : #fff; color : #333';
   const [user, setUser] = useState({
     username: '',
     password: ''
@@ -44,40 +48,43 @@ const SignIn = ({ signInSuccess, history }) => {
       });
   };
   return (
-    <div className='container'>
+    <div className='reg-grid'>
+      <WhiteHeader />
       <div className='form-container'>
-        <h2 className='align-left'>Sign In</h2>
-        {error ? <span className='error-text'>{error}</span> : null}
-        <form onSubmit={handleSubmit}>
-          <div className='grid'>
-            <div className='grid-item'>
-              <FormInput
-                name='username'
-                label='Username or Email'
-                value={user.username}
-                type='text'
-                required
-                handleChange={handleChange}
-              />
-            </div>
-            <div className='grid-item'>
-              <FormInput
-                name='password'
-                label='Password'
-                value={user.password}
-                type='password'
-                required
-                handleChange={handleChange}
-              />
-            </div>
+        <Container>
+          <h2 className='align-left'>Log In</h2>
+          {error ? <span className='error-text'>{error}</span> : null}
+          <form onSubmit={handleSubmit}>
+            <div className='grid'>
+              <div className='grid-item'>
+                <FormInput
+                  name='username'
+                  label='Username or Email'
+                  value={user.username}
+                  type='text'
+                  required
+                  handleChange={handleChange}
+                />
+              </div>
+              <div className='grid-item'>
+                <FormInput
+                  name='password'
+                  label='Password'
+                  value={user.password}
+                  type='password'
+                  required
+                  handleChange={handleChange}
+                />
+              </div>
 
-            <div className='grid-item'>
-              <Button type='submit' className='red-submit'>
-                Log In
-              </Button>
+              <div className='grid-item'>
+                <Button type='submit' className='red-submit'>
+                  Log In
+                </Button>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </Container>
       </div>
     </div>
   );

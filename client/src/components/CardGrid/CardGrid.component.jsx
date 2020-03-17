@@ -5,7 +5,7 @@ import './CardGrid.styles.css';
 const CardGrid = ({ reviews }) => {
   return (
     <div className='card-container'>
-      <span className='card-title'>Recently Reviewed</span>
+      {reviews ? <span className='card-title'>Recently Reviewed</span> : null}
       <div className='card-grid'>
         {reviews
           ? reviews.map(review => (

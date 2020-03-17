@@ -1,12 +1,12 @@
 import React from 'react';
 import './ReviewCard.styles.css';
-
+import Container from '../Container/Container.component';
 const ReviewCard = ({ review }) => {
   const rating = `${review.rating * 10}%`;
   const gradient =
     review.rating > 7.5
-      ? 'linear-gradient(90deg, rgba(43,139,4,1) 0%, rgba(183,255,33,1) 100%)'
-      : 'linear-gradient(90deg, rgba(250,43,2,1) 0%, rgba(255,238,33,1) 100%);';
+      ? 'linear-gradient(to right, #24fe41, #fdfc47)'
+      : 'linear-gradient(to right, #f12711, #f5af19)';
 
   const imgBuffer =
     review && review.image
@@ -25,15 +25,19 @@ const ReviewCard = ({ review }) => {
         backgroundSize: 'cover'
       }}
     >
-      <h1 className='rc-title'>{review.name}</h1>
-      <div className='rc-meter'>
-        <span
-          style={{
-            width: rating,
-            backgroundImage: gradient
-          }}
-        ></span>
-      </div>
+      <Container>
+        <div className='bottom'>
+          <h1 className='rc-title'>{review.name}</h1>
+          <div className='rc-meter'>
+            <span
+              style={{
+                width: rating,
+                backgroundImage: gradient
+              }}
+            ></span>
+          </div>
+        </div>
+      </Container>
     </div>
   );
 };

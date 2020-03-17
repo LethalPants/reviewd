@@ -1,18 +1,27 @@
 .rc-dark-bg {
   background: #202020;
   color: #fff;
-  height: 10em;
+  height: 25em;
+  position: relative;
+}
+
+.bottom {
+  width: 100%;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
 }
 
 .rc-title {
+  text-align: center;
   font-size: 1em;
-  margin-left: 15px;
+  margin: 35px auto;
 }
 
 .rc-meter {
   height: 20px;
   width: 50%;
-  margin-left: 15px;
+  margin: auto;
   position: relative;
   background: #555;
   -moz-border-radius: 25px;

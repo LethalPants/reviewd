@@ -7,21 +7,21 @@ import {
   selectCurrentUserType
 } from './redux/user/user.selectors';
 import HomePage from './pages/Homepage/Homepage.page';
-import SignIn from './pages/sign-in/SignIn.page';
-import SignUp from './pages/sign-up/SignUp.page';
+import Login from './pages/Login/Login.page';
+import Register from './pages/Register/Register.page';
 import PostReview from './pages/PostReview/PostReview.pages';
 function App({ user, type }) {
   return (
     <Switch>
       <Route exact path='/' component={HomePage} />
       <Route
-        path='/signup'
-        render={() => (user ? <Redirect to='/' /> : <SignUp />)}
+        path='/register'
+        render={() => (user ? <Redirect to='/' /> : <Register />)}
       />
       <Route
         exact
-        path='/signin'
-        render={() => (user ? <Redirect to='/' /> : <SignIn />)}
+        path='/login'
+        render={() => (user ? <Redirect to='/' /> : <Login />)}
       />
       <Route
         exact

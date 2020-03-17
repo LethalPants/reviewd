@@ -1,6 +1,9 @@
 .card-container {
   width: 80%;
   margin: 15px auto;
+  z-index: 2;
+  position: relative;
+  top: -120px;
 }
 .card-title {
   font-weight: 600;
@@ -10,6 +13,16 @@
 }
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr) auto;
+  grid-template-columns: repeat(4, 1fr);
   column-gap: 1em;
+}
+
+@media (max-width: 425px) {
+  .card-title {
+    font-size: 0.9em;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

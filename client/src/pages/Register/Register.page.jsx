@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
-import './signup.styles.css';
+import './Register.styles.css';
+import WhiteHeader from '../../components/HeaderWhite/HeaderWhite.component';
+
+import Container from '../../components/Container/Container.component';
 import FormInput from '../../components/FormInput/FormInput.component';
 import Button from '../../components/Button/Button.component';
 import { signUpSuccess } from '../../redux/user/user.actions';
 
 const SignUp = ({ signUpSuccess, history }) => {
+  document.body.style = 'background : #fff; color : #333';
   const [user, setUser] = useState({
     username: '',
     email: '',
@@ -76,68 +80,71 @@ const SignUp = ({ signUpSuccess, history }) => {
     }
   };
   return (
-    <div className='container'>
+    <div className='reg-grid'>
+      <WhiteHeader />
       <div className='form-container'>
-        <h2 className='align-left'>Create your account</h2>
-        <form onSubmit={handleSubmit}>
-          <div className='grid'>
-            <div className='grid-item'>
-              <FormInput
-                name='username'
-                label='Username'
-                type='text'
-                required
-                handleChange={handleChange}
-              />
-              {error && error.includes('username') ? (
-                <span className='error-text'>{error}</span>
-              ) : null}
-            </div>
-            <div className='grid-item'>
-              <FormInput
-                name='email'
-                label='Email'
-                type='text'
-                required
-                handleChange={handleChange}
-                noValidate
-              />
-              {emailError ? (
-                <span className='error-text'>{emailError}</span>
-              ) : null}
-              {error && error.includes('email') ? (
-                <span className='error-text'>{error}</span>
-              ) : null}
-            </div>
-            <div className='grid-item'>
-              <FormInput
-                name='password'
-                label='Password'
-                type='password'
-                required
-                handleChange={handleChange}
-              />
-            </div>
-            <div className='grid-item'>
-              <FormInput
-                name='confirmPassword'
-                label='Confirm Password'
-                type='password'
-                required
-                handleChange={handleChange}
-              />
-              {passError ? (
-                <span className='error-text'>{passError}</span>
-              ) : null}
-            </div>
+        <Container>
+          <h2 className='align-left'>Create your account</h2>
+          <form onSubmit={handleSubmit}>
+            <div className='grid'>
+              <div className='grid-item'>
+                <FormInput
+                  name='username'
+                  label='Username'
+                  type='text'
+                  required
+                  handleChange={handleChange}
+                />
+                {error && error.includes('username') ? (
+                  <span className='error-text'>{error}</span>
+                ) : null}
+              </div>
+              <div className='grid-item'>
+                <FormInput
+                  name='email'
+                  label='Email'
+                  type='text'
+                  required
+                  handleChange={handleChange}
+                  noValidate
+                />
+                {emailError ? (
+                  <span className='error-text'>{emailError}</span>
+                ) : null}
+                {error && error.includes('email') ? (
+                  <span className='error-text'>{error}</span>
+                ) : null}
+              </div>
+              <div className='grid-item'>
+                <FormInput
+                  name='password'
+                  label='Password'
+                  type='password'
+                  required
+                  handleChange={handleChange}
+                />
+              </div>
+              <div className='grid-item'>
+                <FormInput
+                  name='confirmPassword'
+                  label='Confirm Password'
+                  type='password'
+                  required
+                  handleChange={handleChange}
+                />
+                {passError ? (
+                  <span className='error-text'>{passError}</span>
+                ) : null}
+              </div>
 
-            <div className='grid-item'>
-              <Button type='submit' className='red-submit'>
-                Register
-              </Button>
+              <div className='grid-item'>
+                <Button type='submit' className='red-submit'>
+                  Register
+                </Button>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </Container>
       </div>
     </div>
   );
