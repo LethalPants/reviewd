@@ -26,6 +26,11 @@
   letter-spacing: 0.02em;
 }
 
+.post-rating {
+  float: right;
+  z-index: 2;
+}
+
 .post-content {
   margin-top: 80px;
   text-align: justify;

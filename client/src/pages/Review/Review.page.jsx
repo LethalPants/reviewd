@@ -39,6 +39,10 @@ class Review extends React.Component {
                 <div className='post-container'>
                   <div className='title'>
                     <h2>{review.name}</h2>
+                    <h1 className='post-rating'>
+                      <span className='post-tag'>Score </span>
+                      {review.rating}{' '}
+                    </h1>
                     <p>{review.subtext}</p>
                     <div className='post-section-subtext'>
                       <span className='post-subtext'>
