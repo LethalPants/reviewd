@@ -126,8 +126,6 @@ router.post(
   upload.single('gameImage'),
   async (req, res) => {
     try {
-      console.log(req.query);
-      console.log(req.file);
       const review = await Review.findById(req.query._id);
       const buffer = await sharp(req.file.buffer).toBuffer();
       review.image = buffer;

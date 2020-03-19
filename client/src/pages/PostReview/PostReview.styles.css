@@ -1,0 +1,62 @@
+.post-rev-container {
+  width: 80%;
+  margin: auto;
+}
+
+.post-rev-form-container {
+  display: grid;
+  box-sizing: border-box;
+  margin: auto;
+}
+
+.post-rev-align-left {
+  font-size: 1post-rev-5em;
+  text-align: left;
+}
+
+.post-rev-grid {
+  width: 100%;
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+
+.post-rev-grid-item {
+  height: 70px;
+  width: 100%;
+}
+
+.post-rev-error-text {
+  color: #bd1e1e;
+  font-size: 14px;
+  font-weight: normal;
+  text-transform: capitalize;
+}
+
+.span-2 {
+  height: 265px;
+  grid-row-start: 6;
+  grid-row-end: 9;
+}
+.error-text {
+  color: #bd1e1e;
+  font-size: 14px;
+  font-weight: normal;
+  text-transform: capitalize;
+}
+
+.success-text {
+  color: #05860b;
+  font-size: 14px;
+  font-weight: normal;
+  text-transform: capitalize;
+}
+
+.hidden {
+  display: none;
+}
+
+.material-icons {
+  color: rgb(240, 33, 33);
+  cursor: pointer;
+}

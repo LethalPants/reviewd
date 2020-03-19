@@ -23,7 +23,6 @@ class Review extends React.Component {
   render() {
     const { review } = this.state;
     const genreArray = review ? review.genre.split(',') : 0;
-    console.log(review);
     const imgBuffer =
       review && review.image
         ? `data:image/jpg;base64,${new Buffer(review.image.data).toString(
@@ -40,7 +39,7 @@ class Review extends React.Component {
                 <div className='post-container'>
                   <div className='title'>
                     <h2>{review.name}</h2>
-                    <p className='subtitle'>{review.subtext}</p>
+                    <p>{review.subtext}</p>
                     <div className='post-section-subtext'>
                       <span className='post-subtext'>
                         <span className='post-tag'>Publisher: </span>
@@ -54,11 +53,11 @@ class Review extends React.Component {
                         <span className='post-tag'>Author: </span>{' '}
                         {review.author.username}
                       </span>
-                      <div className='post-subtext post-genre-row'>
-                        {genreArray.map((item, index) => (
-                          <Pill key={index}>{item}</Pill>
-                        ))}
-                      </div>
+                    </div>
+                    <div className='post-genre-row'>
+                      {genreArray.map((item, index) => (
+                        <Pill key={index}>{item}</Pill>
+                      ))}
                     </div>
                   </div>
                   <div className='post-image'>

@@ -1,7 +1,5 @@
 .text-area-input {
-  background-color: #fff;
   position: relative;
-  height: 100%;
   width: calc(100% - 22px);
   border: 1px solid gray;
   padding: 30px 10px 10px 10px;
@@ -10,7 +8,7 @@
   font-size: 18px;
   line-height: 1.33333em;
   font-family: 'Open Sans', sans-serif;
-  height: 100%;
+
   line-height: 1.44em;
   resize: none;
   min-height: 225px;

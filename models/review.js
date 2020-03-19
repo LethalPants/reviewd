@@ -11,9 +11,7 @@ const ReviewSchema = new Schema(
       type: String,
       required: [true, "Body can't be empty"]
     },
-    subtext: {
-      type: String
-    },
+
     genre: {
       type: String,
       required: [true, "Genre can't be empty"]

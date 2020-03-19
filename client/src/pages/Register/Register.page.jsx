@@ -66,7 +66,6 @@ const SignUp = ({ signUpSuccess, history }) => {
           password
         })
         .then(response => {
-          console.log('Response', response);
           localStorage.setItem('token', response.data.token);
           signUpSuccess(response.data.user);
           history.push('/');
