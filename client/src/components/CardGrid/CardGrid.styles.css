@@ -10,6 +10,7 @@
   font-size: 1.3em;
   color: rgb(229, 229, 229);
   letter-spacing: 0.1em;
+  line-height: 3;
 }
 .card-grid {
   display: grid;
@@ -17,9 +18,10 @@
   column-gap: 1em;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 768px) {
   .card-title {
     font-size: 0.9em;
+    line-height: 1;
   }
 
   .card-grid {

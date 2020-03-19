@@ -30,7 +30,18 @@ function checkFileType(file, cb) {
 
 router.get('/', async (req, res) => {
   try {
-    const rev = await Review.find({}, [], { sort: { rating: -1 } });
+    const rev = await Review.find({}, [], { sort: { rating: -1 } }).select([
+      '-body'
+    ]);
+    res.json(rev);
+  } catch (e) {
+    res.status(500).send(e);
+  }
+});
+
+router.get('/:id', async (req, res) => {
+  try {
+    const rev = await Review.findById(req.params.id);
     res.json(rev);
   } catch (e) {
     res.status(500).send(e);

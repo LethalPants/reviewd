@@ -10,6 +10,7 @@ import HomePage from './pages/Homepage/Homepage.page';
 import Login from './pages/Login/Login.page';
 import Register from './pages/Register/Register.page';
 import PostReview from './pages/PostReview/PostReview.pages';
+import ReviewPage from './pages/Review/Review.page';
 function App({ user, type }) {
   return (
     <Switch>
@@ -30,6 +31,7 @@ function App({ user, type }) {
           type === 'editor' ? <PostReview /> : <Redirect to='/' />
         }
       />
+      <Route path='/review/:id' component={ReviewPage} />
       <Route component={HomePage} />
     </Switch>
   );

@@ -1,4 +1,5 @@
 .header-fixed {
+  --header-color: #d4d4d4;
   font-size: 16px;
   background: linear-gradient(
     0deg,
@@ -6,7 +7,6 @@
     rgba(0, 0, 0, 1) 81%,
     rgba(0, 0, 0, 1) 100%
   );
-  color: #d4d4d4;
   padding: 40px;
   box-sizing: border-box;
   top: 0;
@@ -16,6 +16,12 @@
   top: 0;
   left: 0;
   width: 100vw;
+}
+
+.header-white {
+  --header-color: #333;
+  background: #ffffff;
+  position: initial;
 }
 
 .header-fixed-placeholder {
@@ -47,13 +53,12 @@
 
 .header-fixed .header-limiter nav a,
 .header-fixed .header-limiter nav span {
-  position: relative;
   top: -10px;
   display: inline-block;
   padding: 0 25px;
   margin-right: 25px;
   text-decoration: none;
-  color: #d4d4d4;
+  color: var(--header-color);
   opacity: 0.9;
   border-radius: 0 5px;
   cursor: pointer;

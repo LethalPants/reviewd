@@ -5,6 +5,14 @@ body {
   color: #fff;
 }
 
+a {
+  outline: none;
+}
+
+a:active {
+  outline: none;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

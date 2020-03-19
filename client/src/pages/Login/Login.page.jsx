@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
-import WhiteHeader from '../../components/HeaderWhite/HeaderWhite.component';
+import Header from '../../components/Header/Header.component';
 import Container from '../../components/Container/Container.component';
 import './Login.styles.css';
 import FormInput from '../../components/FormInput/FormInput.component';
@@ -49,7 +49,7 @@ const SignIn = ({ signInSuccess, history }) => {
   };
   return (
     <div className='reg-grid'>
-      <WhiteHeader />
+      <Header className='header-white' />
       <div className='form-container'>
         <Container>
           <h2 className='align-left'>Log In</h2>

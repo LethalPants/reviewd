@@ -45,7 +45,7 @@ const HeroReview = ({ review, history }) => {
           <div className='hero-hr'></div>
           <Button
             className='hero-submit'
-            onClick={() => history.push(`/review/${review._id}`)}
+            onClick={() => history.push(`review/${review._id}`)}
           >
             Read Review
           </Button>

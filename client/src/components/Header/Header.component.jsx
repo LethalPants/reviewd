@@ -6,11 +6,11 @@ import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { logout } from '../../redux/user/user.actions';
 
 import './Header.styles.css';
-const Header = ({ user, logout, history }) => {
+const Header = ({ user, logout, history, className }) => {
   const [visibility, setvisibility] = useState(false);
   const togglevisibility = () => setvisibility(!visibility);
   return (
-    <header className='header-fixed'>
+    <header className={`header-fixed ${className ? className : ''}`}>
       <div className='header-limiter'>
         <h1 onClick={() => history.push('/')}>Reviewd</h1>
 
@@ -51,8 +51,8 @@ const Header = ({ user, logout, history }) => {
             </div>
           ) : (
             <div>
-              <Link to='/register'>Sign up</Link>
-              <Link to='/login'>Sign in</Link>
+              <Link to='/register'>Register</Link>
+              <Link to='/login'>Log in</Link>
             </div>
           )}
         </nav>
