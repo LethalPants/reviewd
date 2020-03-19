@@ -4,9 +4,10 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './PostReview.styles.css';
 import { withRouter } from 'react-router-dom';
-import FormInput from '../../components/FormInput/FormInput.component';
-import Button from '../../components/Button/Button.component';
-import TextArea from '../../components/TextArea/TextArea.component';
+
+import Header from '../../components/Header/Header.component';
+import StepOne from '../../components/PostStepOne/PostStepOne.component';
+import StepTwo from '../../components/PostStepTwo/PostStepTwo.component';
 
 const SignIn = ({ history }) => {
   document.body.style = 'background: #fff; color : #333';
@@ -18,6 +19,8 @@ const SignIn = ({ history }) => {
     publisher: '',
     rating: ''
   });
+  const [step, setStep] = useState(1);
+
   var formdata = new FormData();
   const [error, setError] = useState(false);
   const handleChange = event => {
@@ -32,6 +35,7 @@ const SignIn = ({ history }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
+    setStep(1);
     axios
       .post(
         '/api/reviews',
@@ -78,105 +82,38 @@ const SignIn = ({ history }) => {
         setError(true);
       });
   };
+
+  console.log(step);
+
   return (
-    <div className='post-rev-container'>
-      {error ? (
-        <span className='error-text'>
-          Unable to post review. Something went wrong!
-        </span>
-      ) : null}
-      <div className='post-rev-form-container'>
-        <h2 className='post-rev-align-left'>New Review</h2>
-        {error ? <span className='post-rev-error-text'>{error}</span> : null}
-        <form onSubmit={handleSubmit}>
-          <div className='post-rev-grid'>
-            <div className='post-rev-post-rev-grid-item'>
-              <FormInput
-                name='name'
-                label='Game Title'
-                value={review.name}
-                type='text'
-                required
-                handleChange={handleChange}
-              />
+    <>
+      <Header className='header-white' />
+      <div className='post-rev-container'>
+        <div className='post-rev-form-container'>
+          <h2 className='post-rev-align-left'>New Review</h2>
+          <form onSubmit={handleSubmit}>
+            <div className='post-rev-grid'>
+              {step === 1 ? (
+                <StepOne
+                  error={error}
+                  handleChange={handleChange}
+                  handleUpload={handleUpload}
+                  review={review}
+                  setStep={setStep}
+                />
+              ) : (
+                <StepTwo
+                  review={review}
+                  handleChange={handleChange}
+                  setStep={setStep}
+                  handleSubmit={handleSubmit}
+                />
+              )}
             </div>
-
-            <div className='post-rev-grid-item'>
-              <FormInput
-                name='genre'
-                label='Genre'
-                value={review.genre}
-                type='text'
-                required
-                handleChange={handleChange}
-              />
-            </div>
-
-            <div className='post-rev-grid-item'>
-              <FormInput
-                name='releaseAt'
-                label='Release Date'
-                value={review.releaseAt}
-                type='text'
-                required
-                handleChange={handleChange}
-              />
-            </div>
-
-            <div className='post-rev-grid-item'>
-              <FormInput
-                name='publisher'
-                label='Publisher'
-                value={review.publisher}
-                type='text'
-                required
-                handleChange={handleChange}
-              />
-            </div>
-
-            <div className='post-rev-grid-item'>
-              <FormInput
-                name='rating'
-                label='Score'
-                value={review.rating}
-                type='text'
-                required
-                handleChange={handleChange}
-              />
-            </div>
-
-            <div className='post-rev-grid-item span-2'>
-              <TextArea
-                name='body'
-                label='Review Body'
-                handleChange={handleChange}
-              >
-                {review.body}
-              </TextArea>
-            </div>
-
-            <div className='post-rev-grid-item'>
-              <input
-                type='file'
-                name='gameReview'
-                id='gameReview'
-                className='hidden'
-                onChange={handleUpload}
-              />
-              <label htmlFor='gameReview'>
-                <i className='material-icons'>camera_alt</i>
-              </label>
-            </div>
-
-            <div className='post-rev-grid-item'>
-              <Button type='submit' className='red-submit'>
-                Submit Review
-              </Button>
-            </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

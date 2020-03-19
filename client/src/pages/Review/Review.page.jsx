@@ -4,7 +4,6 @@ import Markdown from 'markdown-to-jsx';
 import Pill from '../../components/Pill/Pill.component';
 import Header from '../../components/Header/Header.component';
 
-import Container from '../../components/Container/Container.component';
 import './review.styles.css';
 
 class Review extends React.Component {
