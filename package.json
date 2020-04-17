@@ -1,39 +1,44 @@
 {
-  "name": "reviewd-server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "scripts": {
-    "client": "cd client && npm start",
-    "server": "nodemon server.js",
-    "build": "cd client && npm build",
-    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
-    "start": "node server.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
-  },
-  "author": "",
-  "license": "MIT",
-  "devDependencies": {
-    "concurrently": "^5.1.0",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-prettier": "^3.1.2",
-    "eslint-plugin-react": "^7.19.0",
-    "nodemon": "^2.0.2",
-    "prettier": "^1.19.1"
-  },
-  "dependencies": {
-    "bcrypt": "^4.0.1",
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.4",
-    "morgan": "^1.9.1",
-    "multer": "^1.4.2",
-    "redux-logger": "^3.0.6",
-    "redux-persist": "^6.0.0",
-    "sharp": "^0.25.1"
-  }
+    "name": "reviewd-server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "scripts": {
+        "preinstall": "npx npm-force-resolutions",
+        "client": "cd client && npm start",
+        "server": "nodemon server.js",
+        "build": "cd client && npm build",
+        "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+        "start": "node server.js",
+        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    },
+    "author": "",
+    "license": "MIT",
+    "resolutions": {
+        "minimist": "^1.2.5"
+    },
+    "devDependencies": {
+        "concurrently": "^5.1.0",
+        "eslint": "^6.8.0",
+        "eslint-config-prettier": "^6.10.0",
+        "eslint-plugin-prettier": "^3.1.2",
+        "eslint-plugin-react": "^7.19.0",
+        "minimist": "^1.2.5",
+        "nodemon": "^2.0.2",
+        "prettier": "^1.19.1"
+    },
+    "dependencies": {
+        "bcrypt": "^4.0.1",
+        "body-parser": "^1.19.0",
+        "cors": "^2.8.5",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "jsonwebtoken": "^8.5.1",
+        "mongoose": "^5.9.4",
+        "morgan": "^1.9.1",
+        "multer": "^1.4.2",
+        "redux-logger": "^3.0.6",
+        "redux-persist": "^6.0.0",
+        "sharp": "^0.25.1"
+    }
 }
